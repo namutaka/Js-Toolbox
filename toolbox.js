@@ -16,25 +16,32 @@ Toolbox.app.prototype = {
     var self = this;
     this.body.css('font-size', '12px');
 
-    var $buttons = $('<div/>').buttonset();
+    var $buttons = $('<div/>').buttonset()
+      .addClass('ui-widget-header')
+      .addClass('ui-corner-all');
     this.body.append($buttons);
 
-    $buttons.append($('<button/>')
+    $buttons.append(
+      $('<button/>')
         .text('refresh')
         .button({icons: {primary: "ui-icon-refresh"}})
         .click(function() {
           self.refresh();
-    }));
+      })
+    );
 
-    $buttons.append($('<button/>')
+    $buttons.append(
+      $('<button/>')
         .text('Show name')
         .button()
         .click(function() {
           self.showName();
-    }));
+      })
+    );
 
-    this.body.append($('<textarea/>')
-        .width(300).height(120));
+    this.body.append(
+      $('<textarea/>').width(300).height(120)
+    );
   },
 
   refresh: function() {
