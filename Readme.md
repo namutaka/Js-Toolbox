@@ -7,6 +7,6 @@ starting Boolmarklet
 ----
 
 ```js
-(function (d) { window.open(d, 'TB', 'width=320,height=150,menubar=no,toolbar=no,scrollbars=yes'); })('toolbox.html');
+javascript:(function(d,u){var e=d.createElement('script');e.setAttribute('language','JavaScript');e.setAttribute('src',u);d.body.appendChild(e);})(document,'http://localhost:4567/toolbox-start.js');
 ```
 
