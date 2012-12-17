@@ -8,10 +8,25 @@ Toolbox.app = function() {
   this.opener = window.opener;
 
   this.setupGui();
-  this.refresh();
+  this.onOpenerLoad();
 };
 
 Toolbox.app.prototype = {
+  setupEvent: function() {
+    var self = this;
+    $(this.opener).unload(function() {
+      var polling;
+      polling = function () {
+        if (self.opener.document.readyState == "complete") {
+          self.onOpenerLoad();
+        } else {
+          setTimeout(polling, 100);
+        }
+      };
+      setTimeout(polling, 100);
+    });
+  },
+
   setupGui: function (){
     var self = this;
     this.body.css('font-size', '12px');
@@ -42,6 +57,11 @@ Toolbox.app.prototype = {
     this.body.append(
       $('<textarea/>').width(300).height(120)
     );
+  },
+
+  onOpenerLoad: function() {
+    this.refresh();
+    this.setupEvent();
   },
 
   refresh: function() {
